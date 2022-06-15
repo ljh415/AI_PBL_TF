@@ -1,3 +1,7 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
 import argparse
 import datetime
 import tensorflow as tf
@@ -60,5 +64,5 @@ if __name__ == '__main__':
     INPUT_SHAPE = (args.resolution, args.resolution, 3)
     train_ds, valid_ds, classes, data_size, class_weight = Dataset(args.batch_size, args.train, args.valid).get_dataset(class_weight=True)
     
-    model = PetModel(INPUT_SHAPE, classes).get_model(trainable_base=args.train_base)
+    model = PetModel(INPUT_SHAPE, classes).get_model(weights="imagenet", trainable_base=args.train_base)
     hist = train(args, model, train_ds, valid_ds, data_size, class_weight)
