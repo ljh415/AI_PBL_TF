@@ -1,6 +1,5 @@
 import os
 
-from sklearn import preprocessing
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = "3"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
