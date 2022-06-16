@@ -3,14 +3,16 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = "3"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import tensorflow as tf
+from tensorflow.keras.models import Model
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:  # gpu가 있다면, 용량 한도를 5GB로 설정
   tf.config.experimental.set_virtual_device_configuration(gpus[0], 
         [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=9*1024)])
 
-class PetModel:
+class PetModel(Model):
     def __init__(self, input_shape, classes):
+        super().__init__()
         self.INPUT_SHAPE = input_shape
         self.classes = classes
         
@@ -33,12 +35,7 @@ class PetModel:
             bn_0,
             # dense_layer,
             # bn_1,
-            prediction_layer
+              prediction_layer
         ])
         
         return self.model
-    
-    def load_checkpoints(self, weight_path):
-        print(f"checkpoint loads : {weight_path}")
-        self.model.load_weights(weight_path)
-        
