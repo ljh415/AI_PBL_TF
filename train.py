@@ -55,9 +55,9 @@ if __name__ == '__main__':
     parser.add_argument("--train", type=str)
     parser.add_argument("--valid", type=str)
     parser.add_argument("--batch_size", type=int)
-    parser.add_argument("--resolution", type=int)
+    parser.add_argument("--resolution", type=int, default=224)
     parser.add_argument("--learning_rate", type=float)
-    parser.add_argument("--epochs", type=int)
+    parser.add_argument("--epochs", type=intm default=100)
     parser.add_argument("--train_base", action='store_true')
     args = parser.parse_args()
 
