@@ -1,5 +1,4 @@
 import os
-
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = "3"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -10,7 +9,6 @@ from PIL import Image
 
 from model import PetModel
 from utils import open_json
-
 
 class Inference:
     def __init__(self, args):
